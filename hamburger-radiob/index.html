@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="hu">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hamburger rendelés</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+
+<body>
+  <div class="container my-5">
+    <div class="row">
+      <div class="col-3">
+
+      </div>
+      <div class="col-6">
+        <form>
+          <form>
+            <div class="mb-3">
+              <label for="amountInput" class="form-label">Mennyiség</label>
+              <input type="number" min="1" max="100" class="form-control" id="amountInput"
+                aria-describedby="amountInputHelp">
+              <div id="amountInputHelp" class="form-text">Hány db hamburgert kérsz?</div>
+            </div>
+            <div class="mb-3">             
+              <input type="radio" id="ham" name="topping" value="250">
+              <label for="ham">ham (+250 Ft)</label><br>
+              <input type="radio" id="cheese" name="topping" value="300">
+              <label for="cheese">cheese (+300 Ft)</label><br>
+              <input type="radio" id="onion" name="topping" value="150">
+              <label for="onion">onion (+150 Ft)</label>
+            </div>
+            <div class="mb-3">
+              <label for="sum" class="form-label">Rendelésed összege:</label>
+              <input class="form-control" id="sumOfTheOrder" value="0 Ft" aria-label="sumOfTheOrder" disabled readonly>
+            </div>
+            <button type="submit" id="orderButton" class="btn btn-primary">Kalkuláció</button>
+      </div>
+      </form>
+    </div>
+    <div class="col-3">
+
+    </div>
+  </div>
+  </div>
+
+  <script src="changeinputs.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
