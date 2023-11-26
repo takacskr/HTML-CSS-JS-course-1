@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  	<title>Align absolute center with flex</title>
+  <style>
+    .wrap {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .center-div {
+      position: absolute;
+      background-color: lightblue;
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+	<div class="wrap">
+		<div class="center-div">
+    	<p>This is a centered div.</p>
+  	</div>
+	</div>
+</body>
+</html>
