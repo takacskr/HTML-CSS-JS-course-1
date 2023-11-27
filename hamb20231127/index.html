@@ -13,9 +13,57 @@
 <body>
     <div class="container">
         <div class="row my-5">
-            <div class="col"></div>
+            <div class="col">
+
+            </div>
             <div class="col">
                 <form class="card p-3 bg-light needs-validation was-validated" novalidate="">
+                    <div class="form-control mb-3 p-3">
+                        <p>Szószok</p>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="chili">
+                            <label class="form-check-label" for="chili">
+                                chili
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="tomato">
+                            <label class="form-check-label" for="tomato">
+                                paradicsomos
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-control mb-3 p-3">
+                        <p>Feltétek</p>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="extra" id="ham">
+                            <label class="form-check-label" for="ham">
+                                sonka
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="extra" id="cheese">
+                            <label class="form-check-label" for="cheese">
+                                sajt
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="extra" id="egg">
+                            <label class="form-check-label" for="egg">
+                                tojás
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-control mb-3 p-3">
+                        <p>Hány db hamburgert szeretnél?</p>
+                        <input type="number" id="quantityInput" class="form-control" placeholder="Név" required
+                            value="1">
+                        <div class="invalid-feedback">
+                            Kérlek add meg a mennyiséget
+                        </div>
+                    </div>
+                    <p>Adatok a rendeléshez</p>
                     <div class="form-floating mb-3">
                         <input type="text" id="nameInput" class="form-control" placeholder="Név" required>
                         <label for="nameInput" class="form-label">Név</label>
