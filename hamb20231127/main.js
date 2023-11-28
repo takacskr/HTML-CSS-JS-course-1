@@ -1,13 +1,13 @@
-document.addEventListener("DOMContentLoaded", () => {
-  let orderForm = document.getElementById("orderForm");
-  let btn = orderForm.querySelector("button.btn.btn-primary");
+document.addEventListener('DOMContentLoaded', () => {
+  let orderForm = document.getElementById('orderForm');
+  let btn = orderForm.querySelector('button.btn.btn-primary');
 
-  btn.addEventListener("click", (e) => {
+  btn.addEventListener('click', (e) => {
     e.preventDefault();
 
     const price = 2800;
-    let amount = 2800;
-    let quantityInput = orderForm.querySelector("#quantityInput");
+    let amount = 0;
+    let quantityInput = orderForm.querySelector('#quantityInput');
 
     if (
       !isNaN(quantityInput.value) &&
@@ -17,7 +17,6 @@ document.addEventListener("DOMContentLoaded", () => {
       amount =
         (price + getSauces() + getExtra()) * parseInt(quantityInput.value);
     }
-
     console.log(amount);
   });
 
