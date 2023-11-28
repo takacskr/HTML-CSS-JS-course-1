@@ -9,12 +9,15 @@ document.addEventListener("DOMContentLoaded", () => {
     let amount = 2800;
     let quantityInput = orderForm.querySelector("#quantityInput");
 
-    if (!isNaN(quantityInput) && quantityInput > 0 && quantityInput < 11) {
+    if (
+      !isNaN(quantityInput.value) &&
+      quantityInput.value > 0 &&
+      quantityInput.value < 11
+    ) {
       amount =
         (price + getSauces() + getExtra()) * parseInt(quantityInput.value);
-    } else {
-      alert("!!!");
     }
+
     console.log(amount);
   });
 
@@ -33,6 +36,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // Get the value of the selected extra
   const getExtra = () => {
     let extra = orderForm.querySelector('input[name="extra"]:checked');
-    return extra != null ? extra.value : 0;
+    return extra != null ? parseInt(extra.value) : 0;
   };
 });
