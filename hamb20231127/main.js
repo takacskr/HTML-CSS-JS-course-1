@@ -6,12 +6,14 @@ document.addEventListener("DOMContentLoaded", () => {
     e.preventDefault();
 
     const price = 2800;
+    let amount = 2800;
     let quantityInput = orderForm.querySelector("#quantityInput");
-    let amount = 0;
 
-    if (quantityInput) {
+    if (!isNaN(quantityInput) && quantityInput > 0 && quantityInput < 11) {
       amount =
         (price + getSauces() + getExtra()) * parseInt(quantityInput.value);
+    } else {
+      alert("!!!");
     }
     console.log(amount);
   });
