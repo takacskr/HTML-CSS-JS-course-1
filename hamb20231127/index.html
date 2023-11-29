@@ -21,25 +21,25 @@
                     <div class="form-control mb-3 p-3">
                         <p>Szószok</p>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="350" id="yogurt">
+                            <input class="form-check-input" type="checkbox" name="sauce" value="350" id="yogurt">
                             <label class="form-check-label" for="yogurt">
                                 joghurtos
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="250" id="mustard">
+                            <input class="form-check-input" type="checkbox" name="sauce" value="250" id="mustard">
                             <label class="form-check-label" for="mustard">
                                 mustáros
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="300" id="chili">
+                            <input class="form-check-input" type="checkbox" name="sauce" value="300" id="chili">
                             <label class="form-check-label" for="chili">
                                 chili
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="150" id="tomato">
+                            <input class="form-check-input" type="checkbox" name="sauce" value="150" id="tomato">
                             <label class="form-check-label" for="tomato">
                                 paradicsomos
                             </label>
@@ -103,14 +103,20 @@
                             <textarea class="form-control" id="commentInput" rows="3"></textarea>
                             <label for="commentInput" class="form-label">Megyjegyzés a rendeléshez</label>
                         </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" value="500" id="isDelivery">
+                            <label class="form-check-label" for="isDelivery">
+                                Házhozszállítással kérem
+                            </label>
+                        </div>
                         <div class="form-floating mb-3">
                             <input type="text" id="priceOutput" class="form-control" disabled>
                             <label for="priceOutput">Fizetendő:</label>
                         </div>
-                    </div>
-                    <div class="my-3">
-                        <button type="submit" class="btn btn-primary">Ár kalkuláció</button>
-                    </div>
+
+                        <div class="my-3">
+                            <button type="submit" class="btn btn-primary">Ár kalkuláció</button>
+                        </div>
                 </form>
             </div>
             <div class="col-md-3">
