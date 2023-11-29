@@ -5,12 +5,6 @@ document.addEventListener('DOMContentLoaded', () => {
   let priceOutput = orderForm.querySelector('#priceOutput+label');
   let isDeliveryInput = orderForm.querySelector('#isDeliveryInput');
 
-  // Arrow function to determine delivery amount
-  const isDelivery = (amount) => {
-    let delivery = parseInt(isDeliveryInput.value);
-    return isDeliveryInput.checked && amount <= 5000 ? delivery : 0;
-  };
-
   // Add click event listener to the button
   btn.addEventListener('click', (e) => {
     e.preventDefault();
@@ -48,5 +42,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const getExtra = () => {
     let extra = orderForm.querySelector('input[name="extra"]:checked');
     return extra != null ? parseInt(extra.value) : 0;
+  };
+
+  // Function to determine delivery amount
+  const isDelivery = (amount) => {
+    let delivery = parseInt(isDeliveryInput.value);
+    return isDeliveryInput.checked && amount <= 5000 ? delivery : 0;
   };
 });
