@@ -1,31 +1,38 @@
 document.addEventListener('DOMContentLoaded', () => {
+  // Get references to form elements
   let orderForm = document.getElementById('orderForm');
   let btn = orderForm.querySelector('button.btn.btn-primary');
   let priceOutput = orderForm.querySelector('#priceOutput+label');
-  let isDelivery = orderForm.querySelector('#isDelivery');
+  let isDeliveryInput = orderForm.querySelector('#isDeliveryInput');
 
+  // Arrow function to determine delivery amount
+  const isDelivery = (amount) => {
+    let delivery = parseInt(isDeliveryInput.value);
+    return isDeliveryInput.checked && amount <= 5000 ? delivery : 0;
+  };
+
+  // Add click event listener to the button
   btn.addEventListener('click', (e) => {
     e.preventDefault();
 
     const PRICE = 2800;
     let amount = 0;
     let quantity = parseInt(orderForm.querySelector('#quantityInput').value);
-    let delivery = parseInt(isDelivery.value);
 
+    // Check if quantity is valid
     if (!isNaN(quantity) && quantity > 0 && quantity < 11) {
+      // Calculate the total amount including sauces, extras, and quantity
       amount = (PRICE + getSauces() + getExtra()) * parseInt(quantity);
-      console.log(amount);
-      if (isDelivery.checked && amount <= 5000) {
-        amount += delivery;
-      } else {
-        delivery = 0;
-      }
 
+      // Use the arrow function to get the delivery amount
+      let delivery = isDelivery(amount);
+
+      // Display the total amount and delivery charge
       priceOutput.innerHTML = `Fizetendő: ${amount} Ft. Ebből a szállítási díj: ${delivery}`;
     }
   });
 
-  // Get the summary of all selected sauces
+  // Function to get the total value of selected sauces
   const getSauces = () => {
     let sauces = orderForm.querySelectorAll('input[name="sauce"]:checked');
     let selectedSauces = 0;
@@ -37,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
     return selectedSauces;
   };
 
-  // Get the value of the selected extra
+  // Function to get the value of the selected extra
   const getExtra = () => {
     let extra = orderForm.querySelector('input[name="extra"]:checked');
     return extra != null ? parseInt(extra.value) : 0;
