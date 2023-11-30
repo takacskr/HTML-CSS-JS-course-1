@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let quantity = parseInt(orderForm.querySelector('#quantityInput').value);
 
     // Check if quantity is valid
-    if (!isNaN(quantity) && quantity > 0 && quantity < 11) {
+    if (!isNaN(quantity) && quantity > 0 && quantity < 11 && isValidAddress()) {
       // Calculate the total amount including sauces, extras, and quantity
       amount = (PRICE + getSauces() + getExtra()) * parseInt(quantity);
 
@@ -49,4 +49,18 @@ document.addEventListener('DOMContentLoaded', () => {
     let delivery = parseInt(isDeliveryInput.value);
     return isDeliveryInput.checked && amount <= 5000 ? delivery : 0;
   };
+
+  // Function to check whether the address is valid
+const isValidAddress = () => {
+  const addressInput = orderForm.querySelector('#addressInput');
+  
+  if (addressInput.value.length < 10) {
+    alert('A cím nem lehet 10 karakternél rövidebb!');
+    addressInput.focus();
+    return false;
+  }
+
+  return true;
+}
+
 });
