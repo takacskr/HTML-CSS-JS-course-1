@@ -19,6 +19,19 @@
             <div class="col-md-4">
                 <form id="orderForm" class="card p-3 bg-light needs-validation was-validated" novalidate="">
                     <div class="form-control mb-3 p-3">
+                        <select class="form-select" id="daySelectInput">
+                            <option selected>Válaszd ki a napot</option>
+                            <option>Hétfő</option>
+                            <option>Kedd</option>
+                            <option>Szerda</option>
+                            <option>Csütörtök</option>
+                            <option>Péntek</option>
+                            <option>Szombat</option>
+                            <option>Vasárnap</option>
+                        </select>
+                        <p class="my-3" id="celsiusOutput"></p>
+                    </div>
+                    <div class="form-control mb-3 p-3">
                         <p>Szószok</p>
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" name="sauce" value="350" id="yogurt">
@@ -125,6 +138,7 @@
         </div>
     </div>
     <script src="main.js"></script>
+    <script src="offer.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 
