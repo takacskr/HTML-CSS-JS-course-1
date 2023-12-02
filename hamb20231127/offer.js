@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
+  let celsiusArr = ['-2', '0', '17.8', '22.5', '25.8', '32', '10'];
+
   daySelectInput.addEventListener('change', () => {
     let celsiusOutput = orderForm.querySelector('#celsiusOutput');
     celsiusOutput.textContent = `A várható hőmérséklet: ${getCelsiusDegree()} °C`;
@@ -8,13 +10,11 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   const getCelsiusDegree = () => {
-    let celsius = ['-2', '0', '17.8', '22.5', '25.8', '32', '10'];
-
     let daySelectInput = orderForm.querySelector('#daySelectInput');
     let selectedIndex = orderForm.daySelectInput.selectedIndex - 1;
-    let celsiusNumber = celsius[selectedIndex];
+    let celsiusDegree = celsiusArr[selectedIndex];
 
-    return celsiusNumber;
+    return celsiusDegree;
   };
 
   const getOffer = () => {
@@ -27,19 +27,15 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
 
     let celsiusDegree = getCelsiusDegree();
+    let celsiusUpperValue = [0, 15, 20, 25];
 
-    if (celsiusDegree < 0) {
-      return offer[0];
-    } else if (celsiusDegree >= 0 && celsiusDegree <= 15) {
-      return offer[1];
-    } else if (celsiusDegree >= 15 && celsiusDegree <= 20) {
-      return offer[2];
-    } else if (celsiusDegree >= 20 && celsiusDegree <= 25) {
-      return offer[3];
-    } else if (celsiusDegree >= 25) {
-      return offer[4];
-    } else {
-      return false;
+    for (let i = 0; i < celsiusUpperValue.length; i++) {
+      if (celsiusDegree < celsiusUpperValue[i]) {
+        return offer[i];
+      }
     }
+
+    // If the temperature is higher than the last threshold, return the last offer
+    return offer[offer.length - 1];
   };
 });
