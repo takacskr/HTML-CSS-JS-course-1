@@ -44,5 +44,17 @@ const bubbleSortArray = (arr) => {
     return arr;
 };
 
+function bubbleSortA(arr) {
+    let i = 0,
+        swapped;
+    do {
+        swapped = false;
+        for (let j = 0; j < arr.length - i - 1; j++)
+            if (arr[j] > arr[j + 1])
+                ([arr[j], arr[j + 1]] = [arr[j + 1], arr[j]]), (swapped = true);
+    } while (++i < arr.length && swapped);
+    return arr;
+}
+
 bubbleSortArray(numericArr);
 console.log(numericArr);
