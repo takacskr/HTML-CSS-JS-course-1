@@ -1,3 +1,4 @@
+/*
 let arr = ["alma", "körte", "szilva", "dinnye", "szőlő", "barack"];
 
 // kideríteni, hogy egy változó tömb-e. Eredmény: true
@@ -14,6 +15,7 @@ for (let value of arr) {
 };
 
 let fruits = arr.splice(1, 3, "lemon", "kiwi");
+*/
 
 let user = {
 	name: "Kiss Ramóna",
@@ -21,6 +23,7 @@ let user = {
 	city: "Bp"
 };
 
+/*
 let admin = new Object();
 
 let customer = {};
@@ -61,4 +64,9 @@ for (let k of Object.keys(user)) {
 // ÉRTÉKEK kiolvasása az objektumból, egy TÖMBBEN adja vissza
 for (let value of Object.values(user)) {
 	console.log(value);
+}
+*/
+
+for (let entry of Object.entries(user)) {
+	console.log('entries: ', entry[0], entry[1]);
 }
