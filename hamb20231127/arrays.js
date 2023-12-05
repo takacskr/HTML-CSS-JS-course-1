@@ -18,36 +18,54 @@ let fruits = arr.splice(1, 3, "lemon", "kiwi");
 */
 
 let user = {
-    name: "Kiss Ramóna",
+    name: 'Kiss Ramóna',
     age: 20,
-    city: "Bp"
+    city: 'Bp',
 };
 
-
-
 data = {
-    "weathers": [
-        {"dayNumber": 0, "temperature": 11.2},
-        {"dayNumber": 1, "temperature": 15.5},
-        {"dayNumber": 2, "temperature": 18.9},
-        {"dayNumber": 3, "temperature": 9.0},
-        {"dayNumber": 4, "temperature": 14.7},
-        {"dayNumber": 5, "temperature": 20.3},
-        {"dayNumber": 6, "temperature": 22.8},
+    weathers: [
+        { dayNumber: 0, temperature: 11.2 },
+        { dayNumber: 1, temperature: 15.5 },
+        { dayNumber: 2, temperature: 18.9 },
+        { dayNumber: 3, temperature: 9.0 },
+        { dayNumber: 4, temperature: 14.7 },
+        { dayNumber: 5, temperature: 20.3 },
+        { dayNumber: 6, temperature: 22.8 },
     ],
-    "offers": [
-        {"upperLimit": 0, "offerMessage": "Ma forró csokit árusítunk"},
-        {"upperLimit": 15, "offerMessage": "15 fok felett ingyen fagylalt"},
-        {"upperLimit": 10, "offerMessage": "10 fok alatt meleg teát kínálunk"},
-        {"upperLimit": 18, "offerMessage": "18 fokig 20% kedvezmény minden hűsítőre"},
-        {"upperLimit": 22, "offerMessage": "22 fokig strandtörölköző akció"},
-        {"upperLimit": 25, "offerMessage": "25 fok felett jegeskávé dupla adaggal"},
-        {"upperLimit": 26, "offerMessage": "26 fok felett új, frissítő smoothieink vannak"},
-    ]
-}
+    offers: [
+        { upperLimit: 0, offerMessage: 'Ma forró csokit árusítunk' },
+        { upperLimit: 15, offerMessage: '15 fok felett ingyen fagylalt' },
+        { upperLimit: 10, offerMessage: '10 fok alatt meleg teát kínálunk' },
+        {
+            upperLimit: 18,
+            offerMessage: '18 fokig 20% kedvezmény minden hűsítőre',
+        },
+        { upperLimit: 22, offerMessage: '22 fokig strandtörölköző akció' },
+        {
+            upperLimit: 25,
+            offerMessage: '25 fok felett jegeskávé dupla adaggal',
+        },
+        {
+            upperLimit: 26,
+            offerMessage: '26 fok felett új, frissítő smoothieink vannak',
+        },
+    ],
+};
 
-for (let value of Object.values(data)) {
-    console.log(value[6].temperature);
+/* for (let i = 0; i < data.weathers.length; i++) {
+    console.log(data.weathers[i].temperature);
+    console.log(data.offers[i].offerMessage);
+} */
+/* 
+for (entry of Object.entries(data)) {
+    console.log(entry[1][1]);
+} */
+
+let weathers = Object.entries(data)[0][1];
+
+for (let i = 0; i < weathers.length; i++) {
+    console.log(weathers[i]['temperature']);
 }
 
 /*
