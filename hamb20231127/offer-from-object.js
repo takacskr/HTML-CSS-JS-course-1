@@ -24,6 +24,11 @@ document.addEventListener('DOMContentLoaded', () => {
             ]
     };
 
+    const celsiusToFahrenheit = (celsius) => {
+        let fahrenheit = (celsius * 9/5) + 32;
+        return fahrenheit;
+    }
+
     const celsiusArr = () => {
         let celsiusArr = [];
         for (const weather of data.weathers) {
@@ -99,7 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     daySelectInput.addEventListener('change', () => {
         let celsiusOutput = orderForm.querySelector('#celsiusOutput');
-        celsiusOutput.textContent = `A várható hőmérséklet: ${getCelsiusDegree()} °C`;
+        celsiusOutput.textContent = `A várható hőmérséklet: ${getCelsiusDegree()} °C (${celsiusToFahrenheit(getCelsiusDegree())} °F)`;
 
         let offerOutput = orderForm.querySelector('#offerOutput');
         offerOutput.textContent = `Napi ajánlatunk: ${getOffer()}`;
