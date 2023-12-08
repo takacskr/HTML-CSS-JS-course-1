@@ -12,22 +12,41 @@ document.addEventListener('DOMContentLoaded', () => {
       ],
       offers: [
         { upperLimit: 0, offerMessage: 'Ma forró csokit árusítunk' },
-        { upperLimit: 15, offerMessage: '15 fok felett ingyen fagylalt' },
-        { upperLimit: 10, offerMessage: '10 fok alatt meleg teát kínálunk' },
-        { upperLimit: 18, offerMessage: '18 fokig 20% kedvezmény minden hűsítőre' },
-        { upperLimit: 22, offerMessage: '22 fokig strandtörölköző akció' },
-        { upperLimit: 25, offerMessage: '25 fok felett jegeskávé dupla adaggal' },
-        { upperLimit: 26, offerMessage: '26 fok felett új, frissítő smoothieink vannak' }
+        {
+          upperLimit: 15,
+          offerMessage: '15 fok felett ingyen fagylalt',
+        },
+        {
+          upperLimit: 10,
+          offerMessage: '10 fok alatt meleg teát kínálunk',
+        },
+        {
+          upperLimit: 18,
+          offerMessage: '18 fokig 20% kedvezmény minden hűsítőre',
+        },
+        {
+          upperLimit: 22,
+          offerMessage: '22 fokig strandtörölköző akció',
+        },
+        {
+          upperLimit: 25,
+          offerMessage: '25 fok felett jegeskávé dupla adaggal',
+        },
+        {
+          upperLimit: 26,
+          offerMessage: '26 fok felett új, frissítő smoothieink vannak',
+        },
       ],
     },
 
     celsiusToFahrenheit: function (celsius) {
-      let fahrenheit = (celsius * 9 / 5) + 32;
-      return fahrenheit;
+      return (celsius * 9) / 5 + 32;
     },
 
     getCelsiusArr: function () {
-      return this.data.weathers.map(weather => parseFloat(weather.temperature).toFixed(2));
+      return this.data.weathers.map((weather) =>
+        parseFloat(weather.temperature).toFixed(2)
+      );
     },
 
     getCelsiusDegree: function () {
@@ -36,8 +55,14 @@ document.addEventListener('DOMContentLoaded', () => {
     },
 
     getOffer: function () {
-      const selectedWeather = this.data.weathers.find(weather => this.getCelsiusDegree() <= weather.temperature);
-      return selectedWeather ? this.data.offers.find(offer => selectedWeather.temperature <= offer.upperLimit)?.offerMessage : '';
+      const selectedWeather = this.data.weathers.find(
+        (weather) => this.getCelsiusDegree() <= weather.temperature
+      );
+      return selectedWeather
+        ? this.data.offers.find(
+            (offer) => selectedWeather.temperature <= offer.upperLimit
+          )?.offerMessage
+        : '';
     },
 
     getMinCelsiusDegree: function () {
@@ -64,11 +89,10 @@ document.addEventListener('DOMContentLoaded', () => {
       offerOutput.textContent = `Napi ajánlatunk: ${this.getOffer()}`;
 
       const minMaxAvgOutput = orderForm.querySelector('#minMaxAvgOutput');
-      minMaxAvgOutput.textContent =
-        `°C értékek a hétre: Min. ${this.getMinCelsiusDegree()} °C,
+      minMaxAvgOutput.textContent = `°C értékek a hétre: Min. ${this.getMinCelsiusDegree()} °C,
           Max. ${this.getMaxCelsiusDegree()} °C,
           Átlag ${this.getAvgCelsiusDegree()} °C`;
-    }
+    },
   };
 
   const orderForm = document.querySelector('#orderForm');
