@@ -1,6 +1,31 @@
 document.addEventListener('DOMContentLoaded', () => {
     let celsiusArr = ['-2', '42', '17.8', '22.5', '25.8', '32', '10'];
 
+    data = {
+        weathers:
+                [
+                    { dayNumber: 0, temperature: 11.2 },
+                    { dayNumber: 1, temperature: 15.5 },
+                    { dayNumber: 2, temperature: 18.9 },
+                    { dayNumber: 3, temperature: 9.0 },
+                    { dayNumber: 4, temperature: 14.7 },
+                    { dayNumber: 5, temperature: 20.3 },
+                    { dayNumber: 6, temperature: 22.8 },
+                ],
+        
+        offers:
+                [
+                    { upperLimit: 0, offerMessage: 'Ma forró csokit árusítunk' },
+                    { upperLimit: 15, offerMessage: '15 fok felett ingyen fagylalt' },
+                    { upperLimit: 10, offerMessage: '10 fok alatt meleg teát kínálunk' },
+                    { upperLimit: 18, offerMessage: '18 fokig 20% kedvezmény minden hűsítőre'},
+                    { upperLimit: 22, offerMessage: '22 fokig strandtörölköző akció' },
+                    { upperLimit: 25, offerMessage: '25 fok felett jegeskávé dupla adaggal'},
+                    { upperLimit: 26, offerMessage: '26 fok felett új, frissítő smoothieink vannak'}
+                ]
+    };
+
+    // Using the map function to convert each string to a floating-point number
     let numericArr = celsiusArr.map((value) => parseFloat(value));
 
     daySelectInput.addEventListener('change', () => {
@@ -11,11 +36,10 @@ document.addEventListener('DOMContentLoaded', () => {
         offerOutput.textContent = `Napi ajánlatunk: ${getOffer()}`;
 
         let minMaxAvgOutput = orderForm.querySelector('#minMaxAvgOutput');
-        minMaxAvgOutput.textContent = `°C értékek a hétre: Min. ${getMinCelsiusDegree(
-            celsiusArr
-        )} °C,
-    Max. ${getMaxCelsiusDegree(celsiusArr)} °C,
-    Átlag ${getAvgCelsiusDegree(celsiusArr)} °C`;
+        minMaxAvgOutput.textContent =
+        `°C értékek a hétre: Min. ${getMinCelsiusDegree(celsiusArr)} °C,
+        Max. ${getMaxCelsiusDegree(celsiusArr)} °C,
+        Átlag ${getAvgCelsiusDegree(celsiusArr)} °C`;
     });
 
     const getCelsiusDegree = () => {
