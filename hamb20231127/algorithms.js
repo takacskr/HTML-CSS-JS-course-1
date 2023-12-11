@@ -62,7 +62,6 @@ const getMaxCelsiusDegree = (arr) => {
 };
 
 // Bubble sort function
-<<<<<<< HEAD
 const bubbleSort = (numericArr) => {
     for (j = 0; j < numericArr.length; j++) {
         for (let i = 0; i < numericArr.length; i++) {
@@ -73,17 +72,6 @@ const bubbleSort = (numericArr) => {
                 numericArr[i + 1] = swap;
             }
         }
-=======
-const bubbleShort = (numericArr) => {
-  for (j = 0; j < numericArr.length; j++) {
-    for (let i = 0; i < numericArr.length; i++) {
-      let swap;
-      if (numericArr[i + 1] < numericArr[i]) {
-        swap = numericArr[i];
-        numericArr[i] = numericArr[i + 1];
-        numericArr[i + 1] = swap;
-      }
->>>>>>> 32bc1e01cce92ec2729fa76ec95f9e4a0005907e
     }
   }
 
@@ -117,11 +105,4 @@ function bubbleSortA(arr) {
         ([arr[j], arr[j + 1]] = [arr[j + 1], arr[j]]), (swapped = true);
   } while (++i < arr.length && swapped);
   return arr;
-}
-
-bubbleSortArray(numericArr);
-
-function arraySortFunction () {
-    let arr = [1, 3, 44, 67, 98];
-    document.getElementById()
 }
