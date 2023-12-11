@@ -13,7 +13,7 @@ const getMaxCelsiusDegree = (arr) => {
 };
 
 // Bubble sort function
-const bubbleShort = (numericArr) => {
+const bubbleSort = (numericArr) => {
     for (j = 0; j < numericArr.length; j++) {
         for (let i = 0; i < numericArr.length; i++) {
             let swap;
@@ -28,6 +28,7 @@ const bubbleShort = (numericArr) => {
     return numericArr;
 };
 
+// More simple bubble sort function
 const bubbleSortArray = (arr) => {
     let swap;
     do {
