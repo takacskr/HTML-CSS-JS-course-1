@@ -1,5 +1,6 @@
 // Define a User class
 class User {
+  id = 0;
   constructor(id, name, email) {
     this.id = id;
     this.name = name;
@@ -50,6 +51,5 @@ function generateTable(data) {
 }
 // Convert data to User objects
 const users = usersData.map((user) => new User(user.id, user.name, user.email));
-console.log(users);
 // Generate and display the table
 generateTable(users);

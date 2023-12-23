@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Function to create a delete button
     createDeleteButton: function () {
       return this.createIconButton('bi-trash', 'btn-danger', function () {
-        console.log('Delete button clicked');
+        this.parentElement.parentElement.remove();
       });
     },
 
@@ -68,6 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Function to generate a table row for a user
     generateTableRow: function (user) {
       const row = document.createElement('tr');
+      const td = document.createElement('td');
 
       for (const key in user) {
         if (user.hasOwnProperty(key)) {
@@ -75,8 +76,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
 
-      row.appendChild(this.createDeleteButton());
-      row.appendChild(this.createModifyButton());
+      td.appendChild(this.createDeleteButton());
+      row.appendChild(td);
+      td.appendChild(this.createModifyButton());
+      row.appendChild(td);
 
       return row;
     },
