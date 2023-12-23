@@ -24,13 +24,6 @@ document.addEventListener('DOMContentLoaded', () => {
       ],
     },
 
-    // Function to create a cell for user data
-    createCell: function (data) {
-      const cell = document.createElement('td');
-      cell.textContent = data;
-      return cell;
-    },
-
     // Function to create a button with an icon
     createIconButton: function (iconClass, buttonClass, clickHandler) {
       const button = document.createElement('button');
@@ -63,6 +56,13 @@ document.addEventListener('DOMContentLoaded', () => {
           console.log('Modify button clicked');
         }
       );
+    },
+
+    // Function to create a cell for user data
+    createCell: function (data) {
+      const cell = document.createElement('td');
+      cell.textContent = data;
+      return cell;
     },
 
     // Function to generate a table row for a user
