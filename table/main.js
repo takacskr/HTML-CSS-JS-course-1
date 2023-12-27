@@ -45,10 +45,16 @@ document.addEventListener('DOMContentLoaded', () => {
         },
 
         // Function to create a button with an icon
-        createIconButton: function (iconClass, buttonClass, clickHandler) {
+        createIconButton: function (
+            iconClass,
+            buttonClass,
+            display,
+            clickHandler
+        ) {
             const button = document.createElement('button');
             button.classList.add('btn', buttonClass);
             button.style.margin = '5px';
+            button.style.display = display;
 
             const icon = document.createElement('i');
             icon.classList.add('bi', iconClass);
@@ -76,15 +82,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Function to create a delete button
         createDeleteButton: function () {
-            return this.createIconButton('bi-trash', 'btn-danger', function () {
-                this.parentElement.parentElement.remove();
-            });
+            return this.createIconButton(
+                'bi-trash',
+                'btn-danger',
+                'inline-block',
+                function () {
+                    this.parentElement.parentElement.remove();
+                }
+            );
+        },
+
+        createOkButton: function () {
+            return this.createIconButton(
+                'bi-person-fill-check',
+                'btn-success',
+                'none',
+                function () {
+                    console.log(this);
+                }
+            );
         },
 
         createModifyButton: function () {
             return this.createIconButton(
                 'bi-pencil-square',
-                'btn-success',
+                'btn-warning',
                 function () {
                     let childElements =
                         this.parentElement.parentElement.children;
@@ -110,7 +132,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     row.appendChild(this.createCell(user[key]));
                 }
             }
-
+            td.appendChild(this.createOkButton());
+            row.appendChild(td);
             td.appendChild(this.createDeleteButton());
             row.appendChild(td);
             td.appendChild(this.createModifyButton());
