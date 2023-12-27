@@ -19,7 +19,7 @@
             <div class="col-md-4">
                 <form id="orderForm" class="card p-3 bg-light needs-validation was-validated" novalidate="">
                     <div class="form-control mb-3 p-3">
-                        <select class="form-select" id="daySelectInput">
+                        <select class="form-select" id="daySelectInput" name="days">
                             <option selected>Válaszd ki a napot</option>
                             <option>Hétfő</option>
                             <option>Kedd</option>
@@ -29,7 +29,7 @@
                             <option>Szombat</option>
                             <option>Vasárnap</option>
                         </select>
-                        <p class="mt-3" id="celsiusOutput"></p>
+                        <p class="mt-3" id="celsiusOutput" name="celsius"></p>
                         <p id="offerOutput"></p>
                         <p class="fs-6" id="minMaxAvgOutput"></p>
                     </div>
@@ -101,14 +101,14 @@
                         </div>
                         <div class="form-floating mb-3">
                             <input type="text" id="addressInput" class="form-control" placeholder="Cím" required>
-                            <label for="addressInput" class="form-label">Cím</label>
+                            <label for="addressInput" name="address" class="form-label">Cím</label>
                             <div class="invalid-feedback">
                                 Kérlek írd be a címet
                             </div>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="email" class="form-control" id="emailInput" placeholder="valami@valami.hu"
-                                required>
+                            <input type="email" name="email" class="form-control" id="emailInput"
+                                placeholder="valami@valami.hu" required>
                             <label for="emailInput" class="form-label">Email cím</label>
                             <div class="invalid-feedback">
                                 Kérlek írd be az email címet
@@ -116,16 +116,18 @@
                         </div>
                         <div class="form-floating mb-3">
                             <textarea class="form-control" id="commentInput" rows="3"></textarea>
-                            <label for="commentInput" class="form-label">Megyjegyzés a rendeléshez</label>
+                            <label for="commentInput" name="comment" class="form-label">Megyjegyzés a
+                                rendeléshez</label>
                         </div>
                         <div class="form-check mb-3">
-                            <input class="form-check-input" type="checkbox" value="500" id="isDeliveryInput">
+                            <input class="form-check-input" name="delivery" type="checkbox" value="500"
+                                id="isDeliveryInput">
                             <label class="form-check-label" for="isDeliveryInput">
                                 Házhozszállítással kérem
                             </label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="text" id="priceOutput" class="form-control" disabled>
+                            <input type="text" id="priceOutput" name="amount" class="form-control" disabled>
                             <label for="priceOutput">Fizetendő:</label>
                         </div>
 
