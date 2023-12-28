@@ -67,6 +67,11 @@ document.addEventListener('DOMContentLoaded', () => {
         },
 
         modifyData: function (elements) {
+            const okButton = document.querySelector('.btn-success');
+            okButton.style.display = 'inline-block';
+            const modifyButton = document.querySelector('.btn-warning');
+            modifyButton.style.display = 'none';
+
             for (let i = 0; i < elements.length; i++) {
                 const textContent = elements[i].textContent.trim();
                 if (textContent !== '') {
@@ -74,7 +79,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     textBox.type = 'text';
                     textBox.value = textContent;
 
+                    // Remove the text content
                     elements[i].textContent = '';
+
                     elements[i].appendChild(textBox);
                 }
             }
@@ -92,13 +99,24 @@ document.addEventListener('DOMContentLoaded', () => {
             );
         },
 
+        saveNewRecord: function (row) {
+            for (let i = 0; i < 3; i++) {
+                const td = row?.children[i];
+                const value =
+                    row?.children[i]?.children[0]?.value ?? defaultValue;
+                td.textContent = value;
+            }
+        },
+
         createOkButton: function () {
             return this.createIconButton(
                 'bi-person-fill-check',
                 'btn-success',
                 'none',
                 function () {
-                    console.log(this);
+                    return tableApp.saveNewRecord(
+                        this.parentElement.parentElement
+                    );
                 }
             );
         },
@@ -107,6 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return this.createIconButton(
                 'bi-pencil-square',
                 'btn-warning',
+                'inline-block',
                 function () {
                     let childElements =
                         this.parentElement.parentElement.children;
