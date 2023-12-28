@@ -1,8 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     'use strict';
 
-    const defaultValue = 'default';
-
     const tableApp = {
         data: {
             users: [
@@ -68,6 +66,17 @@ document.addEventListener('DOMContentLoaded', () => {
             return button;
         },
 
+        createDeleteButton: function () {
+            return this.createIconButton(
+                'bi-trash',
+                'btn-danger',
+                'inline-block',
+                function () {
+                    this.parentElement.remove();
+                }
+            );
+        },
+
         modifyData: function (row) {
             const okButton = row.querySelector('.btn-success');
             const modifyButton = row.querySelector('.btn-warning');
@@ -98,45 +107,25 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         },
 
-        createDeleteButton: function () {
-            return this.createIconButton(
-                'bi-trash',
-                'btn-danger',
-                'inline-block',
-                function () {
-                    this.parentElement.remove();
-                }
-            );
-        },
-
         saveNewRecord: function (row) {
-            // Select buttons within the specific row
-            const okButton = row.querySelector('.btn-success');
-            const modifyButton = row.querySelector('.btn-warning');
+            for (let i = 1; i < 3; i++) {
+                const td = row?.children[i];
+                const value =
+                    row?.children[i]?.children[0]?.value ?? defaultValue;
+                td.textContent = value;
 
-            for (let i = 1; i < row.children.length; i++) {
-                const td = row.children[i];
-                const inputElement = td?.children[0];
-
-                if (inputElement) {
-                    const value = inputElement.value ?? defaultValue;
-                    td.textContent = value;
-
-                    if (i === 1) {
-                        // Set the id input to readonly
-                        inputElement.readOnly = true;
-                    }
-                }
+                // Update the User data with the new values
+                tableApp.data.users[i][td.id] = value;
             }
 
             // Set the display of buttons based on the condition
-            modifyButton.style.display = 'inline-block';
-            okButton.style.display = 'none';
+            const modifyButton = document.querySelector('.btn-warning');
+            const okButton = document.querySelector('.btn-success');
 
-            const actualRecord = this.data.users.find(
-                (user) => user.id == row.children[1]?.children[0]?.value
-            );
-            console.log(actualRecord);
+            if (modifyButton && okButton) {
+                modifyButton.style.display = 'inline-block';
+                okButton.style.display = 'none';
+            }
         },
 
         createOkButton: function () {
@@ -180,17 +169,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
-            const td = document.createElement('td');
+            const okTd = document.createElement('td');
             const okButton = this.createOkButton();
-            okButton.classList.add('btn-success-' + user.id); // Add a unique class
-            const deleteButton = this.createDeleteButton();
-            const modifyButton = this.createModifyButton();
-            modifyButton.classList.add('btn-warning-' + user.id); // Add a unique class
+            okButton.classList.add('btn-success'); // Add a common class
+            okTd.appendChild(okButton);
 
-            td.appendChild(okButton);
-            td.appendChild(deleteButton);
-            td.appendChild(modifyButton);
-            row.appendChild(td);
+            const deleteTd = document.createElement('td');
+            const deleteButton = this.createDeleteButton();
+            deleteTd.appendChild(deleteButton);
+
+            const modifyTd = document.createElement('td');
+            const modifyButton = this.createModifyButton();
+            modifyButton.classList.add('btn-warning'); // Add a common class
+            modifyTd.appendChild(modifyButton);
+
+            row.appendChild(okTd);
+            row.appendChild(deleteTd);
+            row.appendChild(modifyTd);
 
             return row;
         },
