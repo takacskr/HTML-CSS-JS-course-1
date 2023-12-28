@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Management Table</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css">
+    <style>
+        .btn {
+            padding: 5px;
+            margin: 5px;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: blue;
+            color: white;
+        }
+
+        .btn-success {
+            background-color: green;
+            color: white;
+        }
+
+        .btn-warning {
+            background-color: orange;
+            color: white;
+        }
+
+        .btn-danger {
+            background-color: red;
+            color: white;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        input[type="text"] {
+            margin: 4px 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Table rows will be inserted here -->
+        </tbody>
+    </table>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            'use strict';
+
+            const tableApp = {
+                data: {
+                    users: [
+                        { id: '3dr4', name: 'Kiss Béla', email: 'bela@printcenter.hu' },
+                        { id: '4t68', name: 'Nagy Zoltán', email: 'zoltan.nagy@gmail.com' },
+                        { id: 's3gz', name: 'Horváth János', email: 'hjanos@pvckft.hu' },
+                        // ... more users
+                    ],
+                },
+
+                createIconButton: function (iconClass, buttonClass, clickHandler) {
+                    const button = document.createElement('button');
+                    button.className = 'btn ' + buttonClass;
+                    const icon = document.createElement('i');
+                    icon.className = 'fas fa-' + iconClass;
+                    button.appendChild(icon);
+                    button.addEventListener('click', clickHandler);
+                    return button;
+                },
+
+                renderTable: function () {
+                    const table = document.querySelector('table tbody');
+                    table.innerHTML = '';
+                    this.data.users.forEach(user => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                    <td>${user.id}</td>
+                    <td>
+                        <span class="user-name">${user.name}</span>
+                        <input type="text" class="edit-name hidden" value="${user.name}">
+                    </td>
+                    <td>
+                        <span class="user-email">${user.email}</span>
+                        <input type="text" class="edit-email hidden" value="${user.email}">
+                    </td>
+                    <td></td>
+                `;
+                        const actionsCell = row.cells[3];
+                        actionsCell.appendChild(this.createIconButton('edit', 'btn-primary', () => this.editUser(user, row)));
+                        actionsCell.appendChild(this.createIconButton('save', 'btn-success hidden', () => this.saveUser(user, row)));
+                        actionsCell.appendChild(this.createIconButton('trash', 'btn-danger', () => this.deleteUser(user.id, row)));
+                        table.appendChild(row);
+                    });
+                },
+
+                editUser: function (user, row) {
+                    row.querySelector('.user-name').classList.add('hidden');
+                    row.querySelector('.edit-name').classList.remove('hidden');
+                    row.querySelector('.user-email').classList.add('hidden');
+                    row.querySelector('.edit-email').classList.remove('hidden');
+
+                    row.querySelector('.btn-primary').classList.add('hidden');
+                    row.querySelector('.btn-success').classList.remove('hidden');
+                    row.querySelector('.btn-danger').classList.add('hidden');
+                },
+
+                saveUser: function (user, row) {
+                    const newName = row.querySelector('.edit-name').value.trim();
+                    const newEmail = row.querySelector('.edit-email').value.trim();
+
+                    user.name = newName;
+                    user.email = newEmail;
+
+                    row.querySelector('.user-name').textContent = newName;
+                    row.querySelector('.user-email').textContent = newEmail;
+
+                    row.querySelector('.user-name').classList.remove('hidden');
+                    row.querySelector('.edit-name').classList.add('hidden');
+                    row.querySelector('.user-email').classList.remove('hidden');
+                    row.querySelector('.edit-email').classList.add('hidden');
+
+                    row.querySelector('.btn-primary').classList.remove('hidden');
+                    row.querySelector('.btn-success').classList.add('hidden');
+                    row.querySelector('.btn-danger').classList.remove('hidden');
+                },
+
+                deleteUser: function (userId, row) {
+                    this.data.users = this.data.users.filter(user => user.id !== userId);
+                    row.remove();
+                },
+
+                init: function () {
+                    this.renderTable();
+                },
+            };
+
+            tableApp.init();
+        });
+    </script>
+
+</body>
+
+</html>
