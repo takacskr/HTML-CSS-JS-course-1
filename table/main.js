@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
     'use strict';
 
+    const defaultValue = 'default';
+
     const tableApp = {
         data: {
             users: [
@@ -66,46 +68,75 @@ document.addEventListener('DOMContentLoaded', () => {
             return button;
         },
 
-        modifyData: function (elements) {
-            const okButton = document.querySelector('.btn-success');
-            okButton.style.display = 'inline-block';
-            const modifyButton = document.querySelector('.btn-warning');
-            modifyButton.style.display = 'none';
+        modifyData: function (row) {
+            const okButton = row.querySelector('.btn-success');
+            const modifyButton = row.querySelector('.btn-warning');
 
-            for (let i = 0; i < elements.length; i++) {
-                const textContent = elements[i].textContent.trim();
+            if (okButton && modifyButton) {
+                okButton.style.display = 'inline-block';
+                modifyButton.style.display = 'none';
+            }
+
+            for (let i = 1; i < row.children.length; i++) {
+                const td = row.children[i];
+                const textContent = td.textContent.trim();
+
                 if (textContent !== '') {
                     const textBox = document.createElement('input');
                     textBox.type = 'text';
+
+                    // Set the id input to readonly
+                    textBox.readOnly = i === 1;
+
                     textBox.value = textContent;
 
                     // Remove the text content
-                    elements[i].textContent = '';
+                    td.textContent = '';
 
-                    elements[i].appendChild(textBox);
+                    td.appendChild(textBox);
                 }
             }
         },
 
-        // Function to create a delete button
         createDeleteButton: function () {
             return this.createIconButton(
                 'bi-trash',
                 'btn-danger',
                 'inline-block',
                 function () {
-                    this.parentElement.parentElement.remove();
+                    this.parentElement.remove();
                 }
             );
         },
 
         saveNewRecord: function (row) {
-            for (let i = 0; i < 3; i++) {
-                const td = row?.children[i];
-                const value =
-                    row?.children[i]?.children[0]?.value ?? defaultValue;
-                td.textContent = value;
+            // Select buttons within the specific row
+            const okButton = row.querySelector('.btn-success');
+            const modifyButton = row.querySelector('.btn-warning');
+
+            for (let i = 1; i < row.children.length; i++) {
+                const td = row.children[i];
+                const inputElement = td?.children[0];
+
+                if (inputElement) {
+                    const value = inputElement.value ?? defaultValue;
+                    td.textContent = value;
+
+                    if (i === 1) {
+                        // Set the id input to readonly
+                        inputElement.readOnly = true;
+                    }
+                }
             }
+
+            // Set the display of buttons based on the condition
+            modifyButton.style.display = 'inline-block';
+            okButton.style.display = 'none';
+
+            const actualRecord = this.data.users.find(
+                (user) => user.id == row.children[1]?.children[0]?.value
+            );
+            console.log(actualRecord);
         },
 
         createOkButton: function () {
@@ -127,9 +158,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 'btn-warning',
                 'inline-block',
                 function () {
-                    let childElements =
-                        this.parentElement.parentElement.children;
-                    tableApp.modifyData(childElements);
+                    let row = this.parentElement.parentElement;
+                    tableApp.modifyData(row);
                 }
             );
         },
@@ -141,21 +171,25 @@ document.addEventListener('DOMContentLoaded', () => {
             return cell;
         },
 
-        // Function to generate a table row for a user
         generateTableRow: function (user) {
             const row = document.createElement('tr');
-            const td = document.createElement('td');
 
             for (const key in user) {
                 if (user.hasOwnProperty(key)) {
                     row.appendChild(this.createCell(user[key]));
                 }
             }
-            td.appendChild(this.createOkButton());
-            row.appendChild(td);
-            td.appendChild(this.createDeleteButton());
-            row.appendChild(td);
-            td.appendChild(this.createModifyButton());
+
+            const td = document.createElement('td');
+            const okButton = this.createOkButton();
+            okButton.classList.add('btn-success-' + user.id); // Add a unique class
+            const deleteButton = this.createDeleteButton();
+            const modifyButton = this.createModifyButton();
+            modifyButton.classList.add('btn-warning-' + user.id); // Add a unique class
+
+            td.appendChild(okButton);
+            td.appendChild(deleteButton);
+            td.appendChild(modifyButton);
             row.appendChild(td);
 
             return row;
