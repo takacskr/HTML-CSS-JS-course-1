@@ -14,6 +14,30 @@
 <body>
   <div class="container">
     <div class="row">
+      <form id="orderForm" class="card p-3 bg-light needs-validation was-validated" novalidate="">
+        <div class="input-group">
+          <div class="form-floating col-6">
+            <input type="text" id="nameInput" class="form-control" placeholder="Név" required>
+            <label for="nameInput" class="form-label">Név</label>
+            <div class="invalid-feedback">
+              Kérlek írd be a nevet
+            </div>
+          </div>
+          <div class="form-floating col-6">
+            <input type="email" name="email" class="form-control" id="emailInput" placeholder="valami@valami.hu"
+              required>
+            <label for="emailInput" class="form-label">Email cím</label>
+            <div class="invalid-feedback">
+              Kérlek írd be az email címet
+            </div>
+          </div>
+        </div>
+        <div class="p-3">
+          <button type="button" class="btn btn-primary" onclick="acceptData()">OK</button>
+        </div>
+      </form>
+    </div>
+    <div class="row">
       <div class="column">
         <table class="table table-striped table-hover">
           <thead>
@@ -28,9 +52,8 @@
       </div>
     </div>
   </div>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
   <script src="main.js"></script>
 </body>
 

@@ -107,7 +107,13 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         },
 
+        // Function to register new user data
+        registerNewUser: function () {
+            const row = document.querySelector('.table tbody').insertRow(-1);
+        },
+
         saveNewRecord: function (row) {
+            const defaultValue = '';
             for (let i = 1; i < 3; i++) {
                 const td = row?.children[i];
                 const value =
