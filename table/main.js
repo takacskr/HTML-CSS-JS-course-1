@@ -119,12 +119,12 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             // Set the display of buttons based on the condition
-            const modifyButton = document.querySelector('.btn-warning');
-            const okButton = document.querySelector('.btn-success');
+            const okButton = row.querySelector('.btn-success');
+            const modifyButton = row.querySelector('.btn-warning');
 
-            if (modifyButton && okButton) {
-                modifyButton.style.display = 'inline-block';
+            if (okButton && modifyButton) {
                 okButton.style.display = 'none';
+                modifyButton.style.display = 'inline-block';
             }
         },
 
