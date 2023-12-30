@@ -9,12 +9,22 @@
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+  <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+  <style>
+    .container {
+      max-width: 1024px;
+    }
+
+    tr {
+      vertical-align: middle;
+    }
+  </style>
 </head>
 
 <body>
   <div class="container">
     <div class="row">
-      <form id="orderForm" class="card p-3 bg-light needs-validation was-validated" novalidate="">
+      <form id="addNewUserForm" class="card p-3 bg-light needs-validation was-validated" novalidate>
         <div class="input-group">
           <div class="form-floating col-6">
             <input type="text" id="nameInput" class="form-control" placeholder="Név" required>
@@ -33,7 +43,7 @@
           </div>
         </div>
         <div class="p-3">
-          <button type="button" class="btn btn-primary" onclick="acceptData()">OK</button>
+          <button type="button" id="addNewUserButton" class="btn btn-primary">OK</button>
         </div>
       </form>
     </div>
@@ -54,7 +64,278 @@
   </div>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
-  <script src="main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      'use strict';
+
+      const tableApp = {
+        data: {
+          users: [
+            { id: '3dr4', name: 'Kiss Béla', email: 'bela@printcenter.hu' },
+
+            {
+              id: '4t68',
+              name: 'Nagy Zoltán',
+              email: 'zoltan.nagy@gmail.com',
+            },
+            {
+              id: 's3gz',
+              name: 'Horváth János',
+              email: 'hjanos@pvckft.hu',
+            },
+            {
+              id: '87ji',
+              name: 'Szép Judit',
+              email: 'juditszep@alfaholding.com',
+            },
+            {
+              id: '7iok',
+              name: 'Budavári Kálmán',
+              email: 'b.kalman@gmail.com',
+            },
+            {
+              id: 'swaf',
+              name: 'Seszták Szabolcs',
+              email: 'szabis@galinfo.hu',
+            },
+            {
+              id: '5rgz',
+              name: 'Hédervári Henrietta',
+              email: 'h.heni@gkesekollok.com',
+            },
+            {
+              id: 'bhu6',
+              name: 'László Károly',
+              email: 'karolylaci@vendettaemail.hu',
+            },
+          ],
+        },
+
+        generateRandomID: function () {
+          const digits = '0123456789';
+          const alphanumeric =
+            'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+
+          const getRandomChar = (characters) => {
+            const randomIndex = Math.floor(
+              Math.random() * characters.length
+            );
+            return characters.charAt(randomIndex);
+          };
+
+          const generatedID =
+            getRandomChar(digits) +
+            getRandomChar(digits) +
+            getRandomChar(alphanumeric) +
+            getRandomChar(digits);
+
+          return generatedID;
+        },
+
+        inputFieldsValidation: function (userName, userEmail) {
+          if (
+            (userName.validity && userName.validity.valid === false) ||
+            (userEmail.validity && userEmail.validity.valid === false)
+          ) {
+            userName.classList.add('invalid-input');
+            return false;
+          } else {
+            return true;
+          }
+        },
+
+        addNewUserToTheTable: function () {
+          const userName = document.querySelector('#nameInput');
+          const userEmail = document.querySelector('#emailInput');
+
+          if (!this.inputFieldsValidation(userName, userEmail)) {
+            return;
+          }
+
+          const userId = this.generateRandomID();
+          const userData = [userId, userName.value, userEmail.value];
+          const tableBody = document.querySelector('.table tbody');
+          const row = tableBody.insertRow(-1);
+
+          userData.forEach((data) => {
+            const td = document.createElement('td');
+            td.textContent = data;
+            row.appendChild(td);
+          });
+
+          console.log(row);
+        },
+
+        // Function to create a button with an icon
+        createIconButton: function (
+          iconClass,
+          buttonClass,
+          display,
+          clickHandler
+        ) {
+          const button = document.createElement('button');
+          button.classList.add('btn', buttonClass);
+          button.style.display = display;
+          button.style.margin = '5px';
+
+          const icon = document.createElement('i');
+          icon.classList.add('bi', iconClass);
+          button.appendChild(icon);
+
+          // Add a click event listener to the button
+          button.addEventListener('click', clickHandler);
+
+          return button;
+        },
+
+        createDeleteButton: function () {
+          return this.createIconButton(
+            'bi-trash',
+            'btn-danger',
+            'inline-block',
+            function () {
+              this.parentElement.remove();
+            }
+          );
+        },
+
+        modifyData: function (row) {
+          const okButton = row.querySelector('.btn-success');
+          const modifyButton = row.querySelector('.btn-warning');
+
+          if (okButton && modifyButton) {
+            okButton.style.display = 'inline-block';
+            modifyButton.style.display = 'none';
+          }
+
+          for (let i = 1; i < row.children.length; i++) {
+            const td = row.children[i];
+            const textContent = td.textContent.trim();
+
+            if (textContent !== '') {
+              const textBox = document.createElement('input');
+              textBox.type = 'text';
+
+              // Set the id input to readonly
+              textBox.readOnly = i === 1;
+
+              textBox.value = textContent;
+
+              // Remove the text content
+              td.textContent = '';
+
+              td.appendChild(textBox);
+            }
+          }
+        },
+
+        saveNewRecord: function (row) {
+          const defaultValue = '';
+          for (let i = 1; i < 3; i++) {
+            const td = row?.children[i];
+            const value =
+              row?.children[i]?.children[0]?.value ?? defaultValue;
+            td.textContent = value;
+
+            // Update the User data with the new values
+            tableApp.data.users[i][td.id] = value;
+          }
+
+          // Set the display of buttons based on the condition
+          const okButton = row.querySelector('.btn-success');
+          const modifyButton = row.querySelector('.btn-warning');
+
+          if (okButton && modifyButton) {
+            okButton.style.display = 'none';
+            modifyButton.style.display = 'inline-block';
+          }
+        },
+
+        createOkButton: function () {
+          return this.createIconButton(
+            'bi-person-fill-check',
+            'btn-success',
+            'none',
+            function () {
+              return tableApp.saveNewRecord(
+                this.parentElement.parentElement
+              );
+            }
+          );
+        },
+
+        createModifyButton: function () {
+          return this.createIconButton(
+            'bi-pencil-square',
+            'btn-warning',
+            'inline-block',
+            function () {
+              let row = this.parentElement.parentElement;
+              tableApp.modifyData(row);
+            }
+          );
+        },
+
+        // Function to create a cell for user data
+        createCell: function (data) {
+          const cell = document.createElement('td');
+          cell.textContent = data;
+          return cell;
+        },
+
+        generateTableRow: function (user) {
+          const row = document.createElement('tr');
+
+          for (const key in user) {
+            if (user.hasOwnProperty(key)) {
+              row.appendChild(this.createCell(user[key]));
+            }
+          }
+
+          const okTd = document.createElement('td');
+          const okButton = this.createOkButton();
+          okButton.classList.add('btn-success'); // Add a common class
+          okTd.appendChild(okButton);
+
+          const deleteTd = document.createElement('td');
+          const deleteButton = this.createDeleteButton();
+          deleteTd.appendChild(deleteButton);
+
+          const modifyTd = document.createElement('td');
+          const modifyButton = this.createModifyButton();
+          modifyButton.classList.add('btn-warning'); // Add a common class
+          modifyTd.appendChild(modifyButton);
+
+          row.appendChild(okTd);
+          row.appendChild(deleteTd);
+          row.appendChild(modifyTd);
+
+          return row;
+        },
+
+        // Main function to generate the table
+        generateTable: function () {
+          const tableBody = document.querySelector('.table tbody');
+
+          for (let i = 0; i < this.data.users.length; i++) {
+            const user = this.data.users[i];
+            const row = this.generateTableRow(user);
+            tableBody.appendChild(row);
+          }
+
+          const addNewUserButton = document
+            .querySelector('#addNewUserButton')
+            .addEventListener('click', (e) => {
+              this.addNewUserToTheTable();
+            });
+        },
+      };
+
+      // Call the main function
+      tableApp.generateTable();
+    });
+
+  </script>
 </body>
 
 </html>
