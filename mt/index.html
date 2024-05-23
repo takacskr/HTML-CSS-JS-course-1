@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="pics/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <title>Főoldal</title>
+</head>
+
+<body>
+    <header>
+        <a href="./index.html">Mobil webshop</a>
+        <input type="checkbox" id="toggle-menu" class="toggle-menu">
+        <label for="toggle-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+        <nav class="menu">
+            <ul>
+                <li><a href="">Főoldal</a></li>
+                <li><a href="">Fizetés</a></li>
+                <li><a href="">Szállítás</a></li>
+                <li><a href="">Viszonteladóknak</a></li>
+                <li><a href="">Kapcsolat</a></li>
+                <li class="has-submenu">
+                    <a href="">Kovács János</a>
+                    <ul class="submenu">
+                        <li><a href="">Rendelések</a></li>
+                        <li><a href="">Személyes adatok</a></li>
+                        <li><a href="">Jelszó</a></li>
+                        <li><a href="">Számlázási adatok</a></li>
+                        <li><a href="">Szállítási adatok</a></li>
+                        <li><a href="">Kedvencek</a></li>
+                        <li><a href="">Kijelentkezés</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="welcome">
+            <h1>Mobiltelefonok</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto ipsa enim porro iste libero
+                distinctio, maxime dicta dolorum debitis illum perferendis, voluptate nobis ex modi. Odio eius
+                voluptates suscipit amet!</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis ullam, tempore iste voluptatum
+                provident optio deserunt impedit natus, quis, doloribus cum magnam tenetur quae fuga non hic sit autem
+                veniam.</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus distinctio cumque provident assumenda
+                deleniti corrupti doloribus, quisquam aut tempora eum eius, suscipit at atque fugit, laboriosam eaque
+                neque magni voluptatibus?</p>
+        </section>
+
+        <section class="product-list">
+            <article class="product-box" lang="en">
+                <div class="image">
+                    <img src="pics/1.png" alt="mobiltelefon">
+                    <div class="new">ÚJ!</div>
+                </div>
+                <h2>Apple iPhone 14 Pro 128GB</h2>
+                <div class="price">433 690 Ft</div>
+                <a href="" class="button">Megnézem</a>
+            </article>
+
+            <article class="product-box sale" lang="en">
+                <div class="image">
+                    <img src="pics/2.png" alt="mobiltelefon">
+                </div>
+                <h2>Huawei P30 Pro 256GB</h2>
+                <div class="price">254 680 Ft</div>
+                <a href="" class="button">Megnézem</a>
+            </article>
+
+            <article class="product-box sale">
+                <div class="image">
+                    <img src="pics/3.png" alt="mobiltelefon">
+                </div>
+                <h2>Xiaomi Redmi Note 12 Pro 5G 128GB 64GB RAM Dual</h2>
+                <div class="price">68 730 Ft</div>
+                <a href="" class="button">Megnézem</a>
+            </article>
+
+            <article class="product-box sale">
+                <div class="image">
+                    <img src="pics/4.png" alt="mobiltelefon">
+                </div>
+                <h2>Samsung Galaxy A54 5G 128GB 8GB RAM Dual (SM-A546B)</h2>
+                <div class="price">98 450 Ft</div>
+                <a href="" class="button">Megnézem</a>
+            </article>
+
+            <article class="product-box">
+                <div class="image">
+                    <img src="pics/5.png" alt="mobiltelefon">
+                </div>
+                <h2>Samsung Galaxy S23 Ultra 5G 256GB 8GB RAM Dual (SM-S918B)</h2>
+                <div class="price">230 490 Ft</div>
+                <a href="" class="button">Megnézem</a>
+            </article>
+        </section>
+
+        <nav class="pagination" aria-label="lapozó">
+            <ul>
+                <li><a href="">Előző</a></li>
+                <li><a href="">1</a></li>
+                <li><a href="">2</a></li>
+                <li><span aria-label="3. oldal" aria-current="page">3</span></li>
+                <li><a href="">4</a></li>
+                <li><a href="">5</a></li>
+                <li><a href="">Következő</a></li>
+            </ul>
+        </nav>
+
+        <section class="newsletter">
+            <form>
+                <fieldset>
+                    <legend>Hírlevél feliratkozás</legend>
+                    <div>
+                        <label class="field-label" for="last-name">Vezetéknév</label>
+                        <input type="text" id="last-name" required>
+                    </div>
+                    <div>
+                        <label class="field-label" for="first-name">Keresztnév</label>
+                        <input type="text" id="first-name" required>
+                    </div>
+                    <div>
+                        <label class="field-label" for="email">Email cím</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div>
+                        <div class="checkbox">
+                            <input type="checkbox" id="accept-terms">
+                            <label for="accept-terms">Elfogadom az adatvédelmi nyilatkozatot</label>
+                        </div>
+                    </div>
+                    <div>
+                        <input class="button" type="submit" value="feliratkozom">
+                    </div>
+                </fieldset>
+            </form>
+
+            <div>
+                <h2>Iratkozz fel hírlevelünkre!</h2>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sapiente deserunt earum voluptates optio
+                    maiores expedita natus aliquam itaque odit? Molestiae eligendi accusamus dignissimos corporis
+                    corrupti
+                    veniam sapiente soluta facere dolore.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <ul>
+            <li><a href="">Főoldal</a></li>
+            <li><a href="">Fizetés</a></li>
+            <li><a href="">Szállítás</a></li>
+            <li><a href="">Viszonteladóknak</a></li>
+            <li><a href="">Kapcsolat</a></li>
+            <li><a href="">Kovács János</a></li>
+        </ul>
+    </footer>
+
+</body>
+
+</html>
